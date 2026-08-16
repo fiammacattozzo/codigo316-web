@@ -1,4 +1,4 @@
-  :root{
+:root{
     --canvas:#FAF3E7;
     --canvas-2:#F3EADA;
     --ink:#20223E;
@@ -180,8 +180,8 @@
     letter-spacing:0.05em;
   }
   .hero-patch .icons{
-    display:flex; justify-content:center; gap:14px;
-    margin-top:22px; font-size:1.6rem;
+    display:flex; justify-content:center; flex-wrap:wrap; gap:10px;
+    margin-top:22px; font-size:1.5rem;
   }
 
   /* ---------- DIFERENCIALES ---------- */
@@ -512,7 +512,10 @@
 
   /* ---------- CARRITO ---------- */
   .patch-qty{
-    display:flex; align-items:center; gap:10px;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    gap:10px;
     margin-bottom:12px;
   }
   .qty-btn{
