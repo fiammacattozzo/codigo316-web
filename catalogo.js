@@ -103,6 +103,16 @@ function formatearPrecio(n){
   return "$" + n.toLocaleString("es-AR");
 }
 
+// Saca tildes, mayúsculas y espacios extra de los nombres de columna, así no importa
+// si alguien escribe "categoria", "Categoría " o "CATEGORÍA" — siempre matchea igual.
+function normalizarTexto(s){
+  return (s || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim()
+    .toLowerCase();
+}
+
 function parsearCSV(texto){
   const filas = [];
   let fila = [], campo = "", entreComillas = false;
@@ -135,7 +145,7 @@ async function cargarProductosDesdeSheet(){
     const filas = parsearCSV(texto);
     if(filas.length < 2) return;
 
-    const encabezado = filas[0].map(h => h.trim().toLowerCase());
+    const encabezado = filas[0].map(h => normalizarTexto(h));
     const idxId = encabezado.indexOf("id");
     const idxNombre = encabezado.indexOf("nombre");
     const idxPrecio = encabezado.indexOf("precio") >= 0 ? encabezado.indexOf("precio") : encabezado.indexOf("valor");
