@@ -45,7 +45,8 @@ const TALLES_NINO_DEFAULT = ["6", "8", "10", "12", "14", "16"];
 
 // Productos que se muestran si la planilla todavía no está conectada o falla
 const PRODUCTOS_RESPALDO = [
-  { id: "amongus-campera",       nombre: "Among Us — Campera de algodón",   precio: 38950, icono: "🧥", fotos: [], categoria: "camperas" },
+  { id: "amongus-campera-capucha", nombre: "Among Us — Campera de algodón con capucha", precio: 38950, icono: "🧥",
+    fotos: ["imagenes/amongus-campera-capucha-1.jpg","imagenes/amongus-campera-capucha-2.jpg","imagenes/amongus-campera-capucha-3.jpg","imagenes/amongus-campera-capucha-4.jpg"], categoria: "camperas" },
   { id: "sprunki-campera-capucha", nombre: "Sprunki — Campera de algodón con capucha", precio: 38950, icono: "🧥",
     fotos: ["imagenes/sprunki-campera-capucha-1.jpg","imagenes/sprunki-campera-capucha-2.jpg","imagenes/sprunki-campera-capucha-3.jpg","imagenes/sprunki-campera-capucha-4.jpg"], categoria: "camperas" },
   { id: "cars-campera-capucha",  nombre: "Cars — Campera de algodón con capucha", precio: 31500, icono: "🧥",
