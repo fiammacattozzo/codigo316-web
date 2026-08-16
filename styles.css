@@ -506,6 +506,8 @@
   @media (prefers-reduced-motion: reduce){
     *{transition:none !important;}
   }
+
+  :focus-visible{
     outline:3px solid var(--orange);
     outline-offset:2px;
   }
