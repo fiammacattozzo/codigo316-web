@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Código 3:16 — Ropa y accesorios personalizados</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas:#FAF3E7;
+    --canvas-2:#F3EADA;
+    --ink:#20223E;
+    --ink-soft:#4A4C6B;
+    --violet:#7C4DFF;
+    --violet-deep:#5B32D6;
+    --orange:#FF7A45;
+    --thread:#E8A33D;
+    --line:#DDD1B6;
+    --white:#FFFDF8;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--canvas);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:0.02em;
+  }
+  h1,h2,h3{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    color:var(--ink);
+    line-height:1.1;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* subtle canvas texture via layered radial dots */
+  body{
+    background-image:
+      radial-gradient(circle at 2px 2px, rgba(32,34,62,0.045) 1px, transparent 0);
+    background-size: 22px 22px;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,243,231,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:16px; padding-bottom:16px;
+  }
+  .logo{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:800;
+    font-size:1.5rem;
+    color:var(--violet-deep);
+    display:flex; align-items:baseline; gap:6px;
+  }
+  .logo span.tag{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:400;
+    font-size:0.62rem;
+    color:var(--ink-soft);
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+  .nav-cta{
+    background:var(--violet);
+    color:var(--white);
+    padding:10px 18px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:0.92rem;
+    white-space:nowrap;
+    box-shadow:0 3px 0 var(--violet-deep);
+    transition:transform .15s ease;
+  }
+  .nav-cta:hover{transform:translateY(-1px);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:72px 0 56px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:48px;
+    align-items:center;
+  }
+  .eyebrow{
+    display:inline-block;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+    color:var(--violet-deep);
+    background:rgba(124,77,255,0.1);
+    border:1px dashed var(--violet);
+    padding:6px 12px;
+    border-radius:8px;
+    margin-bottom:20px;
+  }
+  .hero h1{
+    font-size:3.1rem;
+    margin-bottom:20px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--violet);
+    position:relative;
+  }
+  .hero p.lead{
+    font-size:1.15rem;
+    color:var(--ink-soft);
+    max-width:46ch;
+    margin-bottom:32px;
+  }
+  .btn-row{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    padding:14px 26px;
+    border-radius:12px;
+    font-weight:600;
+    font-size:1rem;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary{
+    background:var(--orange);
+    color:var(--white);
+    box-shadow:0 4px 0 #C9531F;
+  }
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-secondary{
+    background:transparent;
+    color:var(--ink);
+    border:2px solid var(--ink);
+  }
+  .btn-secondary:hover{background:var(--ink); color:var(--white);}
+
+  /* hero patch visual */
+  .hero-patch{
+    background:var(--white);
+    border-radius:22px;
+    border:3px dashed var(--violet);
+    padding:36px;
+    transform:rotate(-2.5deg);
+    box-shadow:0 12px 0 rgba(32,34,62,0.06);
+    position:relative;
+  }
+  .hero-patch::before{
+    content:"";
+    position:absolute; inset:10px;
+    border:1.5px dashed var(--thread);
+    border-radius:16px;
+    pointer-events:none;
+  }
+  .hero-patch .stamp{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:800;
+    font-size:2.2rem;
+    text-align:center;
+    color:var(--violet-deep);
+    line-height:1.1;
+  }
+  .hero-patch .stamp small{
+    display:block;
+    font-family:'JetBrains Mono', monospace;
+    font-weight:400;
+    font-size:0.7rem;
+    color:var(--ink-soft);
+    margin-top:10px;
+    letter-spacing:0.05em;
+  }
+  .hero-patch .icons{
+    display:flex; justify-content:center; gap:14px;
+    margin-top:22px; font-size:1.6rem;
+  }
+
+  /* ---------- DIFERENCIALES ---------- */
+  .strip{
+    background:var(--ink);
+    color:var(--canvas);
+    padding:36px 0;
+  }
+  .strip .wrap{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  .strip-item{text-align:left;}
+  .strip-item .mono{
+    color:var(--orange);
+    font-size:0.72rem;
+    display:block;
+    margin-bottom:6px;
+  }
+  .strip-item h3{
+    font-size:1.15rem;
+    color:var(--white);
+    margin-bottom:6px;
+  }
+  .strip-item p{
+    color:#B9BAD4;
+    font-size:0.92rem;
+  }
+
+  /* ---------- CATALOGO ---------- */
+  .catalog{padding:72px 0;}
+  .section-head{
+    max-width:56ch;
+    margin-bottom:44px;
+  }
+  .section-head .eyebrow{margin-bottom:14px;}
+  .section-head h2{font-size:2.1rem; margin-bottom:12px;}
+  .section-head p{color:var(--ink-soft); font-size:1.02rem;}
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:26px;
+  }
+  .patch-card{
+    background:var(--white);
+    border-radius:18px;
+    border:2px dashed var(--line);
+    overflow:hidden;
+    transition:transform .2s ease, border-color .2s ease;
+    position:relative;
+  }
+  .patch-card:hover{
+    transform:translateY(-4px) rotate(-1deg);
+    border-color:var(--violet);
+  }
+  .patch-img{
+    aspect-ratio:1/1;
+    background:linear-gradient(135deg, var(--canvas-2), var(--canvas));
+    display:flex; align-items:center; justify-content:center;
+    flex-direction:column;
+    gap:8px;
+    color:var(--ink-soft);
+    border-bottom:2px dashed var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .patch-img .patch-photo{
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .gal-arrow{
+    position:absolute;
+    top:50%; transform:translateY(-50%);
+    width:28px; height:28px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.85);
+    border:none;
+    color:var(--ink);
+    font-size:1rem;
+    font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    box-shadow:0 2px 6px rgba(0,0,0,0.15);
+  }
+  .gal-arrow:hover{background:var(--white);}
+  .gal-prev{left:8px;}
+  .gal-next{right:8px;}
+  .gal-dots{
+    position:absolute;
+    bottom:8px; left:0; right:0;
+    display:flex; justify-content:center; gap:5px;
+  }
+  .gal-dot{
+    width:6px; height:6px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.6);
+    border:1px solid rgba(32,34,62,0.3);
+  }
+  .gal-dot.active{background:var(--violet);}
+  .patch-img .ph-icon{font-size:2.2rem;}
+  .patch-img .ph-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.66rem;
+    text-align:center;
+    padding:0 16px;
+    color:#8B8C9F;
+  }
+  .patch-body{padding:18px 18px 20px;}
+  .patch-body h3{font-size:1.05rem; margin-bottom:6px;}
+  .patch-price{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:1.3rem;
+    color:var(--violet-deep);
+    margin-bottom:12px;
+  }
+  .patch-cta{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:0.85rem;
+    font-weight:600;
+    color:var(--orange);
+  }
+  .patch-cta:hover{text-decoration:underline;}
+
+  /* ---------- PERSONALIZACION CTA ---------- */
+  .custom-banner{
+    background:var(--violet);
+    color:var(--white);
+    border-radius:24px;
+    padding:48px;
+    margin:16px 0 80px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:32px;
+    flex-wrap:wrap;
+    position:relative;
+    overflow:hidden;
+  }
+  .custom-banner::after{
+    content:"✂";
+    position:absolute;
+    right:-10px; top:-20px;
+    font-size:8rem;
+    opacity:0.12;
+    transform:rotate(15deg);
+    pointer-events:none;
+    z-index:0;
+  }
+  .custom-banner h2{color:var(--white); font-size:1.9rem; max-width:26ch;}
+  .custom-banner p{color:#E4D9FF; margin-top:10px; max-width:38ch;}
+  .custom-banner .btn-primary{
+    background:var(--white);
+    color:var(--violet-deep);
+    box-shadow:0 4px 0 #C9BEEF;
+  }
+
+  /* ---------- FOOTER / CONTACTO ---------- */
+  footer{
+    background:var(--ink);
+    color:var(--canvas);
+    padding:56px 0 32px;
+  }
+  .foot-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr 1fr;
+    gap:40px;
+    margin-bottom:40px;
+  }
+  footer h3{color:var(--white); font-size:1.3rem; margin-bottom:10px;}
+  footer p{color:#B9BAD4; font-size:0.94rem; margin-bottom:6px;}
+  footer .foot-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.68rem;
+    color:var(--orange);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-bottom:12px;
+    display:block;
+  }
+  footer a.link{color:var(--white); font-weight:600;}
+  footer a.link:hover{color:var(--orange);}
+  .foot-bottom{
+    border-top:1px solid #383A5C;
+    padding-top:20px;
+    font-size:0.8rem;
+    color:#7F81A3;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  /* floating WhatsApp button */
+  .float-wa{
+    position:fixed;
+    bottom:22px; right:22px;
+    background:#25D366;
+    color:white;
+    width:58px; height:58px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.6rem;
+    box-shadow:0 6px 16px rgba(0,0,0,0.25);
+    z-index:60;
+    transition:transform .15s ease;
+  }
+  .float-wa:hover{transform:scale(1.08);}
+
+  /* ---------- GUIA DE TALLES ---------- */
+  .size-guide-grid{
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:40px;
+    align-items:center;
+    margin-bottom:36px;
+  }
+  .size-steps{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+  .size-step{display:flex; gap:14px; align-items:flex-start; text-align:left;}
+  .size-step .num{
+    flex:0 0 30px;
+    width:30px; height:30px;
+    border-radius:50%;
+    background:var(--violet);
+    color:var(--white);
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.95rem;
+  }
+  .size-step h4{
+    font-family:'Baloo 2', sans-serif;
+    font-size:0.98rem;
+    margin-bottom:3px;
+    color:var(--ink);
+  }
+  .size-step p{
+    font-size:0.85rem;
+    color:var(--ink-soft);
+  }
+  .size-diagram{
+    background:var(--white);
+    border:2px dashed var(--line);
+    border-radius:20px;
+    padding:24px;
+  }
+  .size-diagram svg{width:100%; height:auto;}
+  table.size-table{
+    width:100%;
+    border-collapse:collapse;
+    border-radius:14px;
+    overflow:hidden;
+    border:2px dashed var(--line);
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.88rem;
+  }
+  table.size-table th{
+    text-align:left;
+    background:var(--ink);
+    color:var(--white);
+    font-family:'JetBrains Mono', monospace;
+    font-weight:500;
+    font-size:0.75rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    padding:12px 14px;
+  }
+  table.size-table td{
+    padding:12px 14px;
+    border-bottom:1px dashed var(--line);
+    color:var(--ink);
+  }
+  table.size-table tr:nth-child(even) td{
+    background:var(--canvas-2);
+  }
+  table.size-table td:first-child{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    color:var(--violet-deep);
+  }
+  .size-note{
+    font-size:0.82rem;
+    color:var(--ink-soft);
+    margin-top:14px;
+    font-family:'JetBrains Mono', monospace;
+  }
+  @media (max-width:860px){
+    .size-guide-grid{grid-template-columns:1fr; gap:28px;}
+    .size-diagram{max-width:320px; margin:0 auto;}
+  }
+  @media (max-width:480px){
+    table.size-table{font-size:0.78rem;}
+    table.size-table th, table.size-table td{padding:9px 6px;}
+  }
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:2.3rem;}
+    .strip .wrap{grid-template-columns:1fr; gap:20px;}
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .foot-grid{grid-template-columns:1fr; gap:28px;}
+    .custom-banner{padding:32px;}
+    .custom-banner h2{font-size:1.5rem;}
+  }
+  @media (max-width:480px){
+    .grid{grid-template-columns:1fr 1fr; gap:14px;}
+    .hero{padding:48px 0 40px;}
+    .hero h1{font-size:1.9rem;}
+    .nav-cta{padding:9px 14px; font-size:0.82rem;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+  }
+    outline:3px solid var(--orange);
+    outline-offset:2px;
+  }
+
+  /* ---------- CARRITO ---------- */
+  .patch-qty{
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:12px;
+  }
+  .qty-btn{
+    width:30px; height:30px;
+    border-radius:8px;
+    border:2px solid var(--line);
+    background:var(--white);
+    font-size:1.1rem;
+    font-weight:700;
+    color:var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+  }
+  .qty-btn:hover{border-color:var(--violet); color:var(--violet-deep);}
+  .qty-val{
+    font-family:'JetBrains Mono', monospace;
+    font-weight:500;
+    min-width:18px;
+    text-align:center;
+  }
+  .add-btn{
+    width:100%;
+    padding:10px;
+    border-radius:10px;
+    background:var(--ink);
+    color:var(--white);
+    font-weight:600;
+    font-size:0.88rem;
+    border:none;
+    cursor:pointer;
+    transition:background .15s ease;
+  }
+  .add-btn:hover{background:var(--violet-deep);}
+  .add-btn.added{background:#2FA84F;}
+
+  .cart-bar{
+    position:fixed;
+    left:0; right:0; bottom:0;
+    background:var(--ink);
+    color:var(--white);
+    padding:14px 20px;
+    display:none;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    z-index:70;
+    box-shadow:0 -6px 20px rgba(0,0,0,0.2);
+  }
+  .cart-bar.visible{display:flex;}
+  .cart-bar .cart-info{
+    font-size:0.92rem;
+  }
+  .cart-bar .cart-info strong{
+    font-family:'Baloo 2', sans-serif;
+    color:var(--orange);
+    font-size:1.05rem;
+  }
+  .cart-bar .cart-actions{
+    display:flex; gap:10px; align-items:center;
+  }
+  .cart-clear{
+    color:#9799BD;
+    font-size:0.82rem;
+    cursor:pointer;
+    background:none; border:none;
+  }
+  .cart-clear:hover{color:var(--white);}
+  .cart-send{
+    background:#25D366;
+    color:white;
+    padding:11px 20px;
+    border-radius:10px;
+    font-weight:600;
+    font-size:0.92rem;
+    border:none;
+    cursor:pointer;
+    display:flex; align-items:center; gap:8px;
+  }
+  .cart-send:hover{background:#1FB855;}
+
+  @media (max-width:480px){
+    .cart-bar{flex-direction:column; align-items:stretch; gap:10px;}
+    .cart-bar .cart-actions{justify-content:space-between;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo">Código <span style="color:var(--orange)">3:16</span> <span class="tag">diseños</span></div>
+    <div style="display:flex;gap:10px;align-items:center;">
+      <a href="https://www.instagram.com/codigo316_" target="_blank" rel="noopener" class="nav-cta" style="background:transparent;color:var(--ink);border:2px solid var(--ink);box-shadow:none;">Instagram</a>
+      <a href="#contacto" class="nav-cta">Escribinos por WhatsApp</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow mono">&gt; fabricante_local // hecho_a_pedido</span>
+      <h1>Ropa y accesorios que tus hijos <em>eligen</em>, no que les toca.</h1>
+      <p class="lead">Mochilas, camperas y remeras con los personajes que realmente les gustan — Among Us, Sprunki, fútbol, gamers y más. Fabricado acá, en Monte Castro, sin intermediarios.</p>
+      <div class="btn-row">
+        <a href="#catalogo" class="btn btn-primary">Ver catálogo →</a>
+        <a href="#contacto" class="btn btn-secondary">Pedir personalizado</a>
+      </div>
+      <div style="margin-top:24px;display:flex;gap:18px;flex-wrap:wrap;align-items:center;">
+        <span class="mono" style="font-size:0.78rem;color:var(--ink-soft);">✓ +1000 ventas en Mercado Libre</span>
+        <span class="mono" style="font-size:0.78rem;color:var(--ink-soft);">✓ Buena atención</span>
+        <span class="mono" style="font-size:0.78rem;color:var(--ink-soft);">✓ Entrega a tiempo</span>
+      </div>
+    </div>
+    <div class="hero-patch">
+      <div class="stamp">
+        Código<br>3:16
+        <small>DISEÑOS · MONTE CASTRO, CABA</small>
+      </div>
+      <div class="icons">🎒 👕 🧥</div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <div class="strip-item">
+      <span class="mono">01 · origen</span>
+      <h3>Fabricante, no revendedor</h3>
+      <p>Cada diseño se produce acá — eso significa que se puede ajustar, personalizar o encargar a medida.</p>
+    </div>
+    <div class="strip-item">
+      <span class="mono">02 · a medida</span>
+      <h3>Personalización real</h3>
+      <p>¿Tu hijo tiene un personaje o nombre que querés sumar? Se estampa bajo pedido.</p>
+    </div>
+    <div class="strip-item">
+      <span class="mono">03 · alcance</span>
+      <h3>Envíos a todo el país</h3>
+      <p>Coordinamos envío por Mercado Libre o entrega personal en CABA.</p>
+    </div>
+  </div>
+</div>
+
+<section class="catalog" id="catalogo">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow mono">&gt; catalogo.ver_todo()</span>
+      <h2>Lo más pedido</h2>
+      <p>Una selección de los diseños que más salen. El catálogo completo está en Mercado Libre — acá van los destacados.</p>
+    </div>
+
+    <div class="grid" id="catalogo-grid">
+      <!-- Los productos se generan automáticamente desde la lista PRODUCTOS más abajo -->
+    </div>
+  </div>
+</section>
+
+<section class="catalog" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow mono">&gt; tambien_hacemos.ver()</span>
+      <h2>No es solo para chicos</h2>
+      <p>La misma producción que hace las camperas de tus hijos, también estampa para vos, para tu equipo o para tu evento.</p>
+    </div>
+
+    <div class="grid" style="grid-template-columns:repeat(3,1fr);">
+      <div class="patch-card">
+        <div class="patch-img">
+          <span class="ph-icon">👨‍👩‍👧</span>
+          <span class="ph-label">FOTO COMBO FAMILIA<br>(reemplazar)</span>
+        </div>
+        <div class="patch-body">
+          <h3>Combo familia</h3>
+          <p style="color:var(--ink-soft);font-size:0.88rem;margin-bottom:12px;">Mismo diseño que la campera de tu hijo, en talle adulto para mamá o papá.</p>
+          <a href="#contacto" class="patch-cta">Consultar →</a>
+        </div>
+      </div>
+
+      <div class="patch-card">
+        <div class="patch-img">
+          <span class="ph-icon">🎸</span>
+          <span class="ph-label">FOTO MERCH ADULTO<br>(reemplazar)</span>
+        </div>
+        <div class="patch-body">
+          <h3>Rock, fútbol y gamers</h3>
+          <p style="color:var(--ink-soft);font-size:0.88rem;margin-bottom:12px;">Remeras y buzos personalizados para fans, equipos amateurs y eventos.</p>
+          <a href="#contacto" class="patch-cta">Consultar →</a>
+        </div>
+      </div>
+
+      <div class="patch-card">
+        <div class="patch-img">
+          <span class="ph-icon">🏢</span>
+          <span class="ph-label">FOTO MERCH NEGOCIO<br>(reemplazar)</span>
+        </div>
+        <div class="patch-body">
+          <h3>Merch para tu negocio</h3>
+          <p style="color:var(--ink-soft);font-size:0.88rem;margin-bottom:12px;">Uniformes, remeras de local o regalos institucionales con tu logo.</p>
+          <a href="#contacto" class="patch-cta">Consultar →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="custom-banner">
+    <div>
+      <h2>¿Tenés una idea para estampar?</h2>
+      <p>Personajes, nombres, equipos de fútbol o diseños propios — lo llevamos a mochila, campera, remera o uniforme.</p>
+    </div>
+    <a href="https://wa.me/5491124929009?text=Hola!%20Tengo%20una%20idea%20para%20un%20dise%C3%B1o%20personalizado%2C%20%C2%BFme%20ayudan%3F" target="_blank" rel="noopener" class="btn btn-primary" style="position:relative;z-index:1;">Contar mi idea →</a>
+  </div>
+</div>
+
+<section class="catalog" id="talles">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow mono">&gt; guia_talles.consultar()</span>
+      <h2>Guía de talles</h2>
+      <p>Para que el pedido llegue justo, medí antes de elegir el talle. Las medidas son en centímetros y pueden variar levemente según la prenda.</p>
+    </div>
+
+    <div class="size-guide-grid">
+      <div class="size-steps">
+        <div class="size-step">
+          <div class="num">1</div>
+          <div><h4>Contorno de cuello</h4><p>Medí la circunferencia sobre la parte más estrecha.</p></div>
+        </div>
+        <div class="size-step">
+          <div class="num">2</div>
+          <div><h4>Contorno de pecho</h4><p>Medí la circunferencia sobre la parte más ancha del pecho.</p></div>
+        </div>
+        <div class="size-step">
+          <div class="num">3</div>
+          <div><h4>Contorno de cintura</h4><p>Medí la circunferencia sobre la parte más estrecha, a la altura de la cintura.</p></div>
+        </div>
+        <div class="size-step">
+          <div class="num">4</div>
+          <div><h4>Contorno de cadera</h4><p>Medí la circunferencia sobre la parte más ancha, a la altura de la cadera.</p></div>
+        </div>
+        <div class="size-step">
+          <div class="num">5</div>
+          <div><h4>Altura de la persona</h4><p>Medí desde el suelo hasta el punto más alto de la cabeza.</p></div>
+        </div>
+      </div>
+
+      <div class="size-diagram">
+        <svg viewBox="0 0 320 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama de puntos de medición en el cuerpo">
+          <!-- figura torso: cuello, pecho, cintura, cadera -->
+          <g stroke="#B9AFDF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="120" cy="45" r="26"/>
+            <path d="M92 78 Q120 68 148 78 L158 150 Q120 165 82 150 Z"/>
+            <path d="M82 150 L74 230 Q120 245 166 230 L158 150"/>
+            <path d="M74 230 L66 340 M166 230 L174 340"/>
+          </g>
+          <!-- líneas de medición -->
+          <line x1="98" y1="70" x2="142" y2="70" stroke="var(--violet)" stroke-width="2" stroke-dasharray="4 3"/>
+          <line x1="86" y1="100" x2="154" y2="100" stroke="var(--violet)" stroke-width="2" stroke-dasharray="4 3"/>
+          <line x1="80" y1="150" x2="160" y2="150" stroke="var(--violet)" stroke-width="2" stroke-dasharray="4 3"/>
+          <line x1="72" y1="200" x2="168" y2="200" stroke="var(--violet)" stroke-width="2" stroke-dasharray="4 3"/>
+
+          <!-- pines numerados -->
+          <g font-family="JetBrains Mono, monospace" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">
+            <circle cx="120" cy="70" r="12" fill="var(--violet)"/><text x="120" y="74">1</text>
+            <circle cx="120" cy="100" r="12" fill="var(--violet)"/><text x="120" y="104">2</text>
+            <circle cx="120" cy="150" r="12" fill="var(--violet)"/><text x="120" y="154">3</text>
+            <circle cx="120" cy="200" r="12" fill="var(--violet)"/><text x="120" y="204">4</text>
+          </g>
+
+          <!-- figura completa para altura -->
+          <g stroke="#B9AFDF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="255" cy="45" r="22"/>
+            <path d="M232 72 Q255 64 278 72 L284 130 Q255 140 226 130 Z"/>
+            <path d="M226 130 L218 200 L232 200 L232 340 M284 130 L292 200 L278 200 L278 340"/>
+          </g>
+          <line x1="308" y1="24" x2="308" y2="340" stroke="var(--orange)" stroke-width="2" stroke-dasharray="4 3"/>
+          <line x1="300" y1="24" x2="316" y2="24" stroke="var(--orange)" stroke-width="2"/>
+          <line x1="300" y1="340" x2="316" y2="340" stroke="var(--orange)" stroke-width="2"/>
+          <circle cx="255" cy="200" r="12" fill="var(--orange)"/>
+          <text x="255" y="204" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">5</text>
+        </svg>
+      </div>
+    </div>
+
+    <table class="size-table">
+      <thead>
+        <tr>
+          <th>Talle</th>
+          <th>Pecho (cm)</th>
+          <th>Cintura (cm)</th>
+          <th>Altura (cm)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>4</td><td>38</td><td>48</td><td>48</td></tr>
+        <tr><td>6</td><td>40</td><td>50</td><td>50</td></tr>
+        <tr><td>8</td><td>42</td><td>52</td><td>52</td></tr>
+        <tr><td>10</td><td>44</td><td>54</td><td>54</td></tr>
+        <tr><td>12</td><td>46</td><td>56</td><td>56</td></tr>
+        <tr><td>14</td><td>48</td><td>58</td><td>58</td></tr>
+        <tr><td>16</td><td>50</td><td>60</td><td>60</td></tr>
+      </tbody>
+    </table>
+    <p class="size-note">Las medidas están en centímetros y pueden variar según el producto.</p>
+  </div>
+</section>
+
+<footer id="contacto">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h3>Código 3:16 Diseños</h3>
+        <p>Fabricante de indumentaria y accesorios personalizados para chicos. Monte Castro, Ciudad de Buenos Aires.</p>
+      </div>
+      <div>
+        <span class="foot-label">Contacto</span>
+        <p><a class="link" href="https://wa.me/5491124929009" target="_blank" rel="noopener">WhatsApp: (11) 2492-9009</a></p>
+        <p><a class="link" href="mailto:code316@hotmail.com">code316@hotmail.com</a></p>
+      </div>
+      <div>
+        <span class="foot-label">Encontranos</span>
+        <p><a class="link" href="https://www.instagram.com/codigo316_" target="_blank" rel="noopener">Instagram — @codigo316_</a></p>
+        <p><a class="link" href="https://articulo.mercadolibre.com.ar/MLA-2031436172" target="_blank" rel="noopener">Ver en Mercado Libre</a></p>
+        <p><a class="link" href="#talles">Guía de talles</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Código 3:16 Diseños</span>
+      <span>Monte Castro, CABA</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5491124929009" class="float-wa" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">💬</a>
+
+<div class="cart-bar" id="cart-bar">
+  <div class="cart-info" id="cart-info">0 productos — <strong>$0</strong></div>
+  <div class="cart-actions">
+    <button class="cart-clear" id="cart-clear">Vaciar</button>
+    <button class="cart-send" id="cart-send">📲 Enviar pedido por WhatsApp</button>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   CATÁLOGO CONECTADO A GOOGLE SHEETS
+   ------------------------------------------------------------
+   Los productos NO se editan acá. Se editan en una planilla de
+   Google Sheets con estas columnas (en este orden):
+
+     id | nombre | precio | icono | fotos | activo
+
+   (la columna de precio también puede llamarse "valor", el
+   código acepta cualquiera de los dos nombres)
+
+   - id: texto corto sin espacios, no se repite (ej: cars-remera)
+   - nombre: lo que ve el cliente
+   - precio: solo el número, sin puntos ni $
+   - icono: un emoji (🎒 👕 🧥), se usa solo si no hay fotos
+   - fotos: uno o varios links de imagen separados por coma.
+     Para varias fotos del mismo producto (frente, dorso, puesta),
+     subirlas a un servicio como imgur.com (gratis, sin cuenta) y
+     pegar los links separados por coma en esta única celda:
+     https://i.imgur.com/foto1.jpg,https://i.imgur.com/foto2.jpg
+   - activo: "si" para mostrarlo, "no" para ocultarlo sin borrar la fila
+
+   CÓMO CONECTAR LA PLANILLA (una sola vez):
+   1. Crear una Google Sheet con esas columnas y algunas filas.
+   2. Archivo → Compartir → Publicar en la web → elegir la hoja
+      correspondiente → formato CSV → Publicar.
+   3. Copiar el ID de la planilla (parte de la URL entre "/d/" y
+      "/edit") y el gid de la pestaña (parte de la URL después
+      de "gid=", identifica la pestaña exacta sin depender de
+      cómo se llame).
+   4. Pegar esos dos valores en SHEET_ID y SHEET_GID más abajo.
+
+   Mientras no se conecte la planilla, se muestran los productos
+   de PRODUCTOS_RESPALDO más abajo, para que la página nunca se
+   quede vacía.
+   ============================================================ */
+
+const SHEET_ID = "15vpC3YvaI25eECMmD-r4Gq-Izj2iRjz61GJ2LiV9hys";
+const SHEET_GID = "963834391"; // identifica la pestaña exacta de la planilla, no depende de su nombre
+
+const NUMERO_WHATSAPP = "5491124929009"; // 👈 cambiar acá si cambia el número de contacto
+
+// Productos que se muestran si la planilla todavía no está conectada
+const PRODUCTOS_RESPALDO = [
+  { id: "amongus-campera",       nombre: "Among Us — Campera de algodón",   precio: 38950, icono: "🧥", fotos: [] },
+  { id: "sprunki-campera",       nombre: "Sprunki — Campera de algodón",    precio: 38950, icono: "🧥",
+    fotos: ["images/sprunki-1.jpg","images/sprunki-2.jpg","images/sprunki-3.jpg","images/sprunki-4.jpg"] },
+  { id: "cars-campera",          nombre: "Cars — Campera de algodón",       precio: 31500, icono: "🧥", fotos: [] },
+  { id: "remera-personalizada",  nombre: "Remera personalizada con nombre", precio: 18000, icono: "👕", fotos: [] },
+];
+
+/* ---------- no hace falta tocar nada de acá para abajo ---------- */
+let PRODUCTOS = PRODUCTOS_RESPALDO;
+const carrito = {};
+const fotoIndex = {}; // { id: índice de la foto actual }
+
+function formatearPrecio(n){
+  return "$" + n.toLocaleString("es-AR");
+}
+
+// parser simple de CSV que respeta campos entre comillas
+function parsearCSV(texto){
+  const filas = [];
+  let fila = [], campo = "", entreComillas = false;
+  for(let i = 0; i < texto.length; i++){
+    const c = texto[i];
+    if(entreComillas){
+      if(c === '"' && texto[i+1] === '"'){ campo += '"'; i++; }
+      else if(c === '"'){ entreComillas = false; }
+      else { campo += c; }
+    } else {
+      if(c === '"'){ entreComillas = true; }
+      else if(c === ','){ fila.push(campo); campo = ""; }
+      else if(c === '\n' || c === '\r'){
+        if(campo !== "" || fila.length){ fila.push(campo); filas.push(fila); }
+        fila = []; campo = "";
+        if(c === '\r' && texto[i+1] === '\n') i++;
+      } else { campo += c; }
+    }
+  }
+  if(campo !== "" || fila.length){ fila.push(campo); filas.push(fila); }
+  return filas.filter(f => f.length && f.some(v => v.trim() !== ""));
+}
+
+async function cargarProductosDesdeSheet(){
+  if(SHEET_ID === "PEGAR_ID_DE_LA_PLANILLA") return; // todavía no conectada
+
+  try{
+    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&gid=${SHEET_GID}`;
+    const res = await fetch(url);
+    if(!res.ok) throw new Error("No se pudo leer la planilla");
+    const texto = await res.text();
+    const filas = parsearCSV(texto);
+    if(filas.length < 2) return; // sin datos, se queda con el respaldo
+
+    const encabezado = filas[0].map(h => h.trim().toLowerCase());
+    const idxId = encabezado.indexOf("id");
+    const idxNombre = encabezado.indexOf("nombre");
+    const idxPrecio = encabezado.indexOf("precio") >= 0 ? encabezado.indexOf("precio") : encabezado.indexOf("valor");
+    const idxIcono = encabezado.indexOf("icono");
+    const idxFotos = encabezado.indexOf("fotos");
+    const idxActivo = encabezado.indexOf("activo");
+
+    const productosPlanilla = filas.slice(1).map(f => ({
+      id: (f[idxId] || "").trim(),
+      nombre: (f[idxNombre] || "").trim(),
+      precio: parseInt((f[idxPrecio] || "0").replace(/[^\d]/g, ""), 10) || 0,
+      icono: (f[idxIcono] || "🎁").trim(),
+      fotos: idxFotos >= 0 ? (f[idxFotos] || "").split(",").map(u => u.trim()).filter(Boolean) : [],
+      activo: (f[idxActivo] || "si").trim().toLowerCase(),
+    })).filter(p => p.id && p.nombre && p.activo !== "no");
+
+    if(productosPlanilla.length){
+      PRODUCTOS = productosPlanilla;
+    }
+  } catch(err){
+    console.warn("No se pudo conectar con la planilla, se muestran los productos de respaldo.", err);
+  }
+}
+
+function renderCatalogo(){
+  const grid = document.getElementById("catalogo-grid");
+  grid.innerHTML = PRODUCTOS.map(p => {
+    const tieneFotos = p.fotos && p.fotos.length > 0;
+    fotoIndex[p.id] = 0;
+
+    const contenidoImagen = tieneFotos
+      ? `
+        <img src="${p.fotos[0]}" class="patch-photo" id="img-${p.id}" alt="${p.nombre}">
+        ${p.fotos.length > 1 ? `
+          <button class="gal-arrow gal-prev" onclick="cambiarFoto('${p.id}', -1)" aria-label="Foto anterior">‹</button>
+          <button class="gal-arrow gal-next" onclick="cambiarFoto('${p.id}', 1)" aria-label="Foto siguiente">›</button>
+          <div class="gal-dots" id="dots-${p.id}">
+            ${p.fotos.map((_, i) => `<span class="gal-dot${i === 0 ? " active" : ""}" id="dot-${p.id}-${i}"></span>`).join("")}
+          </div>
+        ` : ""}
+      `
+      : `
+        <span class="ph-icon">${p.icono}</span>
+        <span class="ph-label">FOTO PRODUCTO<br>(reemplazar)</span>
+      `;
+
+    return `
+    <div class="patch-card">
+      <div class="patch-img">
+        ${contenidoImagen}
+      </div>
+      <div class="patch-body">
+        <h3>${p.nombre}</h3>
+        <div class="patch-price">${formatearPrecio(p.precio)}</div>
+        <div class="patch-qty">
+          <button class="qty-btn" onclick="cambiarCantidad('${p.id}', -1)">−</button>
+          <span class="qty-val" id="qty-${p.id}">0</span>
+          <button class="qty-btn" onclick="cambiarCantidad('${p.id}', 1)">+</button>
+        </div>
+        <button class="add-btn" id="add-${p.id}" onclick="agregarAlPedido('${p.id}')">Agregar al pedido</button>
+      </div>
+    </div>
+  `;
+  }).join("");
+}
+
+function cambiarFoto(id, delta){
+  const producto = PRODUCTOS.find(p => p.id === id);
+  if(!producto || !producto.fotos || producto.fotos.length < 2) return;
+
+  const total = producto.fotos.length;
+  const actual = fotoIndex[id] || 0;
+  const nuevo = (actual + delta + total) % total;
+  fotoIndex[id] = nuevo;
+
+  document.getElementById(`img-${id}`).src = producto.fotos[nuevo];
+  for(let i = 0; i < total; i++){
+    document.getElementById(`dot-${id}-${i}`).classList.toggle("active", i === nuevo);
+  }
+}
+
+function cambiarCantidad(id, delta){
+  const actual = carrito[id] || 0;
+  const nueva = Math.max(0, actual + delta);
+  carrito[id] = nueva;
+  const el = document.getElementById(`qty-${id}`);
+  if(el) el.textContent = nueva;
+  actualizarBarra();
+}
+
+function agregarAlPedido(id){
+  if(!carrito[id] || carrito[id] === 0){
+    cambiarCantidad(id, 1);
+  }
+  const btn = document.getElementById(`add-${id}`);
+  btn.textContent = "✓ Agregado";
+  btn.classList.add("added");
+  setTimeout(() => {
+    btn.textContent = "Agregar al pedido";
+    btn.classList.remove("added");
+  }, 1200);
+  actualizarBarra();
+}
+
+function actualizarBarra(){
+  const bar = document.getElementById("cart-bar");
+  const info = document.getElementById("cart-info");
+  let cantidadTotal = 0;
+  let precioTotal = 0;
+
+  PRODUCTOS.forEach(p => {
+    const c = carrito[p.id] || 0;
+    cantidadTotal += c;
+    precioTotal += c * p.precio;
+  });
+
+  if(cantidadTotal > 0){
+    bar.classList.add("visible");
+    info.innerHTML = `${cantidadTotal} producto${cantidadTotal > 1 ? "s" : ""} — <strong>${formatearPrecio(precioTotal)}</strong>`;
+  } else {
+    bar.classList.remove("visible");
+  }
+}
+
+document.getElementById("cart-clear").addEventListener("click", () => {
+  Object.keys(carrito).forEach(id => {
+    carrito[id] = 0;
+    const el = document.getElementById(`qty-${id}`);
+    if(el) el.textContent = 0;
+  });
+  actualizarBarra();
+});
+
+document.getElementById("cart-send").addEventListener("click", () => {
+  const items = PRODUCTOS.filter(p => (carrito[p.id] || 0) > 0);
+  if(items.length === 0) return;
+
+  let mensaje = "Hola! Quiero hacer este pedido:\n\n";
+  let total = 0;
+  items.forEach(p => {
+    const c = carrito[p.id];
+    const subtotal = c * p.precio;
+    total += subtotal;
+    mensaje += `• ${p.nombre} x${c} — ${formatearPrecio(subtotal)}\n`;
+  });
+  mensaje += `\nTotal: ${formatearPrecio(total)}`;
+
+  const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
+  window.open(url, "_blank");
+});
+
+(async function iniciar(){
+  await cargarProductosDesdeSheet();
+  renderCatalogo();
+})();
+</script>
+
+</body>
+</html>
